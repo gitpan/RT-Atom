@@ -14,7 +14,7 @@ my %methods = map {($_ => 1)} @RT::AtomAuthenticationMethods;
 
 my %accept = map { $_ => 1 } $r->headers_in->{'Accept'} =~ m{([^\s,]+/[^;,]+)}g;
 my @encodings = $r->headers_in->{'Accept-Charset'} =~ m{([^\s,]+[^;,]*)}g;
-my $atom_client = $accept{'application/x.atom+xml'};
+my $atom_client = $accept{'application/atom+xml'} || $accept{'application/x.atom+xml'};
 
 my $header_out = sub { $r->headers_out->add(@_) };
 
@@ -255,6 +255,7 @@ $ARGS{Now} = RT::Date->new($session{CurrentUser});
 $ARGS{Now}->SetToNow;
 
 my @types = qw(
+    application/atom+xml
     application/x.atom+xml
     application/xml
 );

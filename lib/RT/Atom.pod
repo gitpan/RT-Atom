@@ -4,7 +4,7 @@ RT::Atom - The RT-Atom API
 
 =head1 VERSION
 
-This document describes version 0.00_02 of RT::Atom, released May 19, 2004.
+This document describes version 0.03 of RT::Atom, released May 19, 2004.
 
 =head1 DESCRIPTION
 
@@ -66,7 +66,7 @@ And now the actual requests and responses.  First, the Authentication
 part: (The C<Accept> header will be omitted for brevity from now on.)
 
     HEAD /Atom/0.3
-    Accept: application/x.atom+xml,*/*
+    Accept: application/atom+xml,*/*
 
         401 Authorization Required
         WWW-Authenticate: WSSE realm="localhost", profile="UsernameToken"
@@ -100,7 +100,7 @@ Now create a user.  RT-Atom supports two type of payloads for this,
 distinguished by their C<Content-Type> headers.  First is AtomEntry:
 
     POST /Atom/0.3/Users
-    Content-Type: application/x.atom+xml
+    Content-Type: application/atom+xml
 
     <entry>
       <content type="text/xml" mode="xml">
@@ -254,7 +254,7 @@ The server understands a number of HTTP headers for content negotiation:
 =item Accept
 
 Specifies the content type the client is willing to process.  A RT-Atom
-client must include C<application/x.atom+xml> in its C<Accept> list.
+client must include C<application/atom+xml> in its C<Accept> list.
 
 =item Accept-Charset
 
@@ -451,7 +451,7 @@ The client may then infer these relationships:
 Or this:
 
     POST /Atom/0.3/RT-Groups
-    Content-Type: application/x.atom+xml
+    Content-Type: application/atom+xml
 
     <entry>
       <content type="text/xml" mode="xml">

@@ -20,6 +20,13 @@ my $status = 400;
 
 my @rv;
 if ($Path =~ /.*\b(\w+)s/ and $Object and my $code = $Object->can("Add$1")) {
+    if ($1 eq 'CustomFieldValue' and my $q = eval { $Object->QueueObj->Id } and $args{Field} =~ /^(\d*\D.*)$/) {
+        my $name = $1;
+        my $cf = RT::CustomField->new($session{CurrentUser});
+        $cf->LoadByNameAndQueue( Queue => $q, Name => $name );
+        $cf->LoadByNameAndQueue( Queue => 0, Name => $name ) if !$cf->Id;
+        $args{Field} = $cf if $cf->Id;
+    }
     @rv = $code->($Object, %args);
     $status = 200 if $rv[0];
 }

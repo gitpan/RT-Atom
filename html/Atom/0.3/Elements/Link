@@ -40,7 +40,7 @@ if ($IsChild) {
 </%INIT>
 <%ARGS>
 $Relation => "alternate"
-$Type => "application/x.atom+xml"
+$Type => "application/atom+xml"
 $URI => "#"
 $Id => ""
 $Title => ""
