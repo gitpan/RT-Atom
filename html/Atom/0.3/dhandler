@@ -326,9 +326,6 @@ foreach my $part (@parts) {
 
     return $m->comp('Elements/Error', Status => 404)
 	if $obj and $obj->can('Id') and !$obj->Id;
-
-    # Can't allow cache to happen at all
-    eval { $obj->_expire( $obj->_gen_primary_cache_key()) };
 }
 
 $obj ||= $list if $property;

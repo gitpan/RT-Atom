@@ -22,6 +22,12 @@ if ($is_obj) {
 }
 
 $r->content_type('text/plain');
+
+if ($Object->can('_gen_primary_cache_key')) {
+    $Object->Load($Object->Id);
+    $Object->_expire( $Object->_gen_primary_cache_key());
+}
+
 print $Object->$Property, "\n";
 </%INIT>
 <%ARGS>

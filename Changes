@@ -1,3 +1,7 @@
+[Changes for 0.00_02 - May 19, 2004]
+
+Object cache expiry for Get/Property now works.
+
 [Changes for 0.00_01 - May 17, 2004]
 
 Initial CPAN Release.

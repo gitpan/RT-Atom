@@ -2,6 +2,10 @@
 
 RT::Atom - The RT-Atom API
 
+=head1 VERSION
+
+This document describes version 0.00_02 of RT::Atom, released May 19, 2004.
+
 =head1 DESCRIPTION
 
 This RT extension implements a REST-style web service interface, based
@@ -274,7 +278,7 @@ A scalar attached to a single Object; accepts only Get/Set operations
 (i.e. I<GET>/I<PUT> methods).
 
 The MIME type for both operations is C<text/plain>, with a mandatory
-extra newline at the end of response.  For example:
+extra newline at the end.  For example:
 
     % lwp-request -m GET /Atom/0.3/RT-Tickets/15.Subject
     new
@@ -472,7 +476,7 @@ Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2004 by Autrijus Tang.
+Copyright 2004 by Best Practical Solutions, LLC.
 
 (Except where explicitly superseded by other copyright notices)
 

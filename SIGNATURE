@@ -14,9 +14,9 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 1012200075f9c503c69783b51145bc5370ef0e77 Changes
+SHA1 2b5158ff79a82054600b73d7b6c87fa5332b9826 Changes
 SHA1 a21c9250539c36537a2cc8687fa93e35311aaa07 MANIFEST
-SHA1 30bc90800971305e278d224df95c9e42742c9d20 META.yml
+SHA1 bcac45b59483a78c9118be16246537b32545cdfd META.yml
 SHA1 916a24625043c86ed2e2737c02846898c248dbb7 Makefile.PL
 SHA1 f7baee87fe002845dd972c1100eee31c3cfb5bdb README
 SHA1 c3073953ca9263c8ec1210dd5d89a6970cbe9bc1 html/Atom/0.3/Add/index
@@ -29,7 +29,7 @@ SHA1 20b8df0de5c2da7cf40d8035c9322ce880d2fef4 html/Atom/0.3/Elements/Introspect
 SHA1 6ff237cba89902e0193376c9923a5a272f3d49ee html/Atom/0.3/Elements/Link
 SHA1 1c07ae9c210a4241c4008cc34bcd9c34a1ce8ccc html/Atom/0.3/Elements/SetProperty
 SHA1 aa231d32bcf1319d7a42f771febd0c9b0ea9fe09 html/Atom/0.3/Get/Object
-SHA1 6163ffd4a94040632620bf16def283829b9baccc html/Atom/0.3/Get/Property
+SHA1 efc783a64bda2ec124c3695629f8f4cf400325bf html/Atom/0.3/Get/Property
 SHA1 e497df381689bdbb665e0ab7699cdebd3481d111 html/Atom/0.3/Get/index
 SHA1 bc471de8fd28dca5c5d460d49c3e66d4108f3ea9 html/Atom/0.3/NoAuth/autohandler
 SHA1 421e56f4860d8c9a776f5a7e104718f15c555831 html/Atom/0.3/NoAuth/feed.css
@@ -41,7 +41,7 @@ SHA1 1d98b4df0d92935d9c74586f458c11bf032a4cef html/Atom/0.3/Set/Property
 SHA1 39b8d27fd51de0a9f6d0ae19495b7f1338a0e635 html/Atom/0.3/Set/index
 SHA1 6b49c152df8a23d1a7c2afeb5f63884ea8c26100 html/Atom/0.3/Update/index
 SHA1 5101f5d7f406445980e859cbd2ac351b5c12ed5b html/Atom/0.3/autohandler
-SHA1 0b5dc627907226f86a3291e6ce388410ac8642f2 html/Atom/0.3/dhandler
+SHA1 df5e58ab4ab2325481756c98752e09b39abb3226 html/Atom/0.3/dhandler
 SHA1 487b2512b9588029d5fbb68a0f661321d0fd91b6 html/Atom/0.3/index
 SHA1 bbcdbf0d66e807d6e51fcd876a67c1353f9dbdf7 html/Atom/dhandler
 SHA1 46ff42e7e02b856e15106163cd77b1a55fc08fb9 inc/ExtUtils/AutoInstall.pm
@@ -53,14 +53,14 @@ SHA1 aabcd47178e4e7b27e340ff5273269c93697c9c1 inc/Module/Install/Makefile.pm
 SHA1 207dfa13341a374fc78325fbeb99bc36659aef2d inc/Module/Install/Metadata.pm
 SHA1 86bc5c19a73dc0fcbcc73c6aa75fdb103a6ab27a inc/Module/Install/RTx.pm
 SHA1 8e0d347ca21bc18b380d9d1aa5910b8d078a76b7 inc/Module/Install/WriteAll.pm
-SHA1 d8f8a475114b785dccee3a85370387621289c944 lib/RT/Atom.pm
-SHA1 208a0ba27f24a6e2b1900254ab7ceae0d31c2b37 lib/RT/Atom.pod
+SHA1 10d603ff2aacbffbdad96f742aecdfa59cb913e9 lib/RT/Atom.pm
+SHA1 c63a48d5d09a53877d820352cd6386e303b61191 lib/RT/Atom.pod
 SHA1 63c7ea0cfdd7643aa113c260eec9c9bf0a6ee8a0 t/0-signature.t
 SHA1 8ae7127857b78bfe00802772a0f2e33be1d0cb21 t/1-basic.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.3 (FreeBSD)
 
-iD8DBQFAqM6xtLPdNzw1AaARAvnoAJ9ENhEuH3WIVC/U9Iif2u/bq25OogCfY1gI
-UVR03XPr/4CZs5MlAzlg0aY=
-=1ctE
+iD8DBQFAquWOtLPdNzw1AaARAg15AJ0ejSFYK4MtGxfHW6US/oE2ZCPuiQCgvBgZ
+XBfr7Js+bLiS321lOAh2iIU=
+=+qy3
 -----END PGP SIGNATURE-----
