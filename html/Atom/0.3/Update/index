@@ -17,22 +17,33 @@
 <%INIT>
 my %args = $m->request_args;
 my $type = delete $args{type};
-
-# XXX - finish "Comment" and "Correspond" here
-die "$type not handled" if $type;
-
 my @results;
-foreach my $key (sort grep /^[A-Z]/, keys %args) {
-    my ($property, $method) = split(/-/, $key, 2);
-    $method ||= 'Set';
 
-    my $value = $args{$key};
-    push @results, [$m->comp(
-	"../Elements/\u\L$method\EProperty",
-	Object => $Object, 
-	Property => $property,
-	Value => $_,
-    )] for (UNIVERSAL::isa($value, 'ARRAY') ? @$value : $value);
+if ($type) {
+    die "$type not handled" unless $type =~ /^(?:Comment|Correspond)$/ and $Object->can($type);
+    if (exists $args{MIMEObj}) {
+        require MIME::Parser;
+        my $parser = MIME::Parser->new;
+        $parser->output_to_core(1);
+        $parser->tmp_to_core(1);
+        $args{MIMEObj} = $parser->parse_data(\$args{MIMEObj});
+    }
+    my ($trans, $msg, $obj) = $Object->$type( %args );
+    push @results, [($obj ? 200 : 400) => $msg];
+}
+else {
+    foreach my $key (sort grep /^[A-Z]/, keys %args) {
+        my ($property, $method) = split(/-/, $key, 2);
+        $method ||= 'Set';
+
+        my $value = $args{$key};
+        push @results, [$m->comp(
+            "../Elements/\u\L$method\EProperty",
+            Object => $Object, 
+            Property => $property,
+            Value => $_,
+        )] for (UNIVERSAL::isa($value, 'ARRAY') ? @$value : $value);
+    }
 }
 
 $r->status(207);

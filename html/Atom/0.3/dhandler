@@ -16,9 +16,7 @@ my %accept = map { $_ => 1 } $r->headers_in->{'Accept'} =~ m{([^\s,]+/[^;,]+)}g;
 my @encodings = $r->headers_in->{'Accept-Charset'} =~ m{([^\s,]+[^;,]*)}g;
 my $atom_client = $accept{'application/x.atom+xml'};
 
-my $header_out = sub {
-    $ENV{FCGI_ROLE} ? $r->header_out(@_) : $r->headers_out->add(@_);
-};
+my $header_out = sub { $r->headers_out->add(@_) };
 
 my $http_charset;
 if (@encodings) {
@@ -243,7 +241,7 @@ foreach my $key (@$map) {
 	$path .= "!$user_method" if $user_method;
 	my $uri = URI->new("$BaseURI/$path");
 	$uri->query_form( $m->request_args );
-	$r->header_out(Location => $uri->as_string);
+	$header_out->(Location => $uri->as_string);
 	return $m->comp('Elements/Error', Status => 301);
     }
 }
@@ -303,7 +301,14 @@ foreach my $part (@parts) {
     elsif ($part =~ /^(\w*)(?:\.(\w+))?$/ and !$obj) {
 	$property = $2;
 	$obj = $list->NewItem;
-	$obj->Load($1);
+
+        # XXX exception
+        if ($obj->can('LoadUserDefinedGroup')) {
+            $obj->LoadUserDefinedGroup($1);
+        }
+        else {
+            $obj->Load($1);
+        }
     }
     elsif ($part =~ /^([A-Z]\w*)(?:\.(\w+))?$/) {
 	$obj->can($1) or return $m->comp('Elements/Error', Status => 404);
