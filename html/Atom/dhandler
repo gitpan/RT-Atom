@@ -1,7 +1,7 @@
 %# The main dispatcher for RT/Atom 0.3
 <%INIT>
 $r->content_type('text/html');
-$r->header_out(Location => "$RT::WebPath/Atom/0.3/");
+$r->headers_out->{Location} = "$RT::WebPath/Atom/0.3/";
 $r->status(302);
 </%INIT>
 <%FLAGS>

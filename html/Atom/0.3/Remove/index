@@ -9,7 +9,7 @@ my ($ok, $msg) = $Object->Delete;
 
 $r->content_type('text/plain');
 $r->status(400) unless $ok;
-print $msg;
+print $msg, "\n";
 
 </%INIT>
 <%ARGS>

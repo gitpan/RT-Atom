@@ -109,14 +109,28 @@ distinguished by their C<Content-Type> headers.  First is AtomEntry:
       </content>
     </entry>
 
-Another one is a form post:
+Another one is a form post.  Clients should use C<multipart/form-data>:
+
+    POST /Atom/0.3/Users
+    Content-type: multipart/form-data; boundary=---
+
+    ---
+    Content-Disposition: form-data; name="Name"
+    
+    autrijus
+    ---
+    Content-Disposition: form-data; name="EmailAddress"
+    
+    autrijus@example.com
+
+However, the server may also support C<application/x-www-form-urlencoded>:
 
     POST /Atom/0.3/Users
     Content-Type: application/x-www-form-urlencoded
 
-    Name=autrijus&EmailAddress=autrijus@example.com
+    Name=autrijus&EmailAddress=autrijus%4dexample.com
 
-In both cases, the server will return:
+In all cases above, the server will return:
 
         303 See Other
         Location: /Atom/0.3/RT-Users/20
@@ -280,10 +294,12 @@ A scalar attached to a single Object; accepts only Get/Set operations
 The MIME type for both operations is C<text/plain>, with a mandatory
 extra newline at the end.  For example:
 
-    % lwp-request -m GET /Atom/0.3/RT-Tickets/15.Subject
+    % lwp-request -m GET .../Tickets/15.Status
     new
-    % echo resolved | lwp-request -m PUT /Atom/0.3/RT-Tickets/15.Subject
+    % echo resolved | lwp-request -m PUT .../Tickets/15.Status
     resolved
+
+The C<...> above stands for something like C<http://example.com/Atom/0.3/>.
 
 =head1 OPERATIONS
 

@@ -14,6 +14,7 @@ html/Atom/0.3/Get/index
 html/Atom/0.3/Get/Object
 html/Atom/0.3/Get/Property
 html/Atom/0.3/index
+html/Atom/0.3/index.html
 html/Atom/0.3/NoAuth/autohandler
 html/Atom/0.3/NoAuth/feed.css
 html/Atom/0.3/NoAuth/pod.css
@@ -24,6 +25,7 @@ html/Atom/0.3/Set/index
 html/Atom/0.3/Set/Property
 html/Atom/0.3/Update/index
 html/Atom/dhandler
+html/Atom/index.html
 inc/ExtUtils/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm

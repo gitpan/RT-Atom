@@ -2,15 +2,14 @@ feed {
   display:block;
   text-align:center;
   font-family:verdana, sans-serif;
-  margin:2%;
 }
 
 info {
-  margin:10px 0px 10px 0px;
-  background:#003366;
+  margin:10px 0px 3px 0px;
+  background:black;
   display:block;
-  padding:3px;
-  font-size:85%;
+  padding:1px;
+  border-bottom: 1px #b0b0b0 solid;
 }
 
 title {
@@ -38,14 +37,11 @@ a {
   padding: 1px 5px 1px 5px;
   font-size: xx-small;
   color: #000000;
+  border: 1px dotted #999999;
 }
 
 a.nav {
-  font-size:80%;
-  padding: 5px;
-  border:solid 1px #dddddd;
-  font-size: 90%;
-  color: #0000ff;
+  background:#aaaaff;
 }
 
 a.html {
@@ -84,7 +80,15 @@ entry title {
   background:#eeeeee;
 }
 
-id, modified, created, generator, issued, url, head {
+generator {
+  margin:3px 0px 0px 0px;
+  background:#b0b0b0;
+  display:block;
+  padding-bottom: 1px;
+  border-bottom: 1px black solid;
+}
+
+id, modified, created, issued, url, head {
   display:none;
 }
 
@@ -106,12 +110,11 @@ content {
 
 entry {
   text-align:left;
-  border-top:dotted 1px #999999;
   display:block;
   background:#ffffff;
   padding:5px 0px 0px 0px;
   margin:5px 5px 0px 10px;
-  
+  font-family:verdana, sans-serif;
 }
 
 issued, modified, created, name, id {
@@ -129,4 +132,9 @@ a.poweredby {
   text-decoration: underline;
   border: 2px ridge #9999ff;
   background:#aaaaff;
+}
+
+dl {
+  padding-bottom: 5px;
+  border-bottom: 2px black ridge;
 }

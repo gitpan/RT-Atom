@@ -1,5 +1,5 @@
 package RT::Atom;
-$RT::Atom::VERSION = '0.00_02';
+$RT::Atom::VERSION = '0.01';
 
 use strict;
 

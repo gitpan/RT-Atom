@@ -1,7 +1,5 @@
 %# The main dispatcher for RT/Atom 0.3
 <%INIT>
-require lib;
-lib->import($m->base_comp->source_dir . '/../../../lib');
 require RT::Atom;
 
 # needs discussion on using MD5(pass) as Digest token
@@ -14,8 +12,8 @@ $realm =~ s/[^\w.]//g;
 my $nonce = Digest::MD5::md5_hex($realm . rand());
 my %methods = map {($_ => 1)} @RT::AtomAuthenticationMethods;
 
-my %accept = map { $_ => 1 } $r->header_in('Accept') =~ m{([^\s,]+/[^;,]+)}g;
-my @encodings = $r->header_in('Accept-Charset') =~ m{([^\s,]+[^;,]*)}g;
+my %accept = map { $_ => 1 } $r->headers_in->{'Accept'} =~ m{([^\s,]+/[^;,]+)}g;
+my @encodings = $r->headers_in->{'Accept-Charset'} =~ m{([^\s,]+[^;,]*)}g;
 my $atom_client = $accept{'application/x.atom+xml'};
 
 my $header_out = sub {
@@ -52,11 +50,9 @@ $header_out->(
 ) if $methods{Basic} and !$atom_client;
 
 my $CurrentUser;
-$CurrentUser = RT::CurrentUser->new;
-$CurrentUser->Load('root');
 
 my $headerParts = sub {
-    my $header = $r->header_in($_[0]) || $ENV{$_[0]};
+    my $header = $r->headers_in->{$_[0]} || $ENV{$_[0]};
     $header =~ s/^(?:$_[1]) /", / or return;
     $header =~ s/"\s*$//; # strip whitespaces after the last "
 
@@ -74,7 +70,7 @@ my $headerParts = sub {
 AUTH_Basic: {
     last if $CurrentUser or !$methods{Basic};
 
-    ($r->header_in('Authorization') || $ENV{'Authorization'})
+    ($r->headers_in->{'Authorization'} || $ENV{'Authorization'})
          =~ /^Basic (.+)$/ or last;
     my ($username, $password) = split(/:/, MIME::Base64::decode_base64($1), 2);
 
@@ -174,7 +170,7 @@ AUTH_RT: {
 }
 
 # Now for the dreaded "su anotheruser" feature...
-my $su = $r->header_in('X-RT-CurrentUser');
+my $su = $r->headers_in->{'X-RT-CurrentUser'};
 if ($CurrentUser and $su and ($su ne $CurrentUser->Id) and ($su ne $CurrentUser->Name)) {
     # You have to be SuperUser to do this.
     $CurrentUser->UserObj->HasRight(
@@ -207,7 +203,7 @@ my %Methods = (
 
 my $method = $r->method;
 
-my $path = $m->dhandler_arg;
+my $path = $m->notes('dhandler_arg') || $m->dhandler_arg;
 $path =~ s{/+(?:index\.html)?$}{}g;
 
 my $user_method;

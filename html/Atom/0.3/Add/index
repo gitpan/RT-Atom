@@ -26,7 +26,7 @@ if ($Path =~ /.*\b(\w+)s/ and $Object and my $code = $Object->can("Add$1")) {
 else {
     @rv = $obj->Create( %args );
     if (my $id = $obj->Id) {
-	$r->header_out(Location => "$BaseURI/$Path/$id");
+	$r->headers_out->{Location} = "$BaseURI/$Path/$id";
 	$status = 303;
     }
 }
@@ -34,7 +34,7 @@ else {
 $r->content_type('text/plain');
 $r->status($status);
 
-print $rv[-1];
+print $rv[-1], "\n";
 </%INIT>
 <%ARGS>
 $Path

@@ -23,7 +23,7 @@
 % # XXX - The URI below is incorrect; should point to collection URL
   <& $ShowLink, Type => 'text/html', URI => $RT::WebURL, Title => $Type &>
   <modified><% $Now->W3CDTF %></modified>
-  <generator url="http://www.bestpractical.com/rt/" version="<% $RT::VERSION %>">RT</generator>
+  <generator url="http://www.bestpractical.com/rt/" version="<% $RT::VERSION %>"></generator>
 % foreach my $obj (@$List) {
   <entry>
     <& $ShowEntry, %ARGS, Object => $obj, IsChild => 1 &>
@@ -31,10 +31,10 @@
 % }
   <info></info>
 % if ($page > 1) {
-  <& $ShowLink, URI => $prev->as_string, Title => "Previous Page", Relation => 'prev', &>
+  <& $ShowLink, URI => $prev->as_string, Text => loc("Previous Page"), Relation => 'prev', &>
 % }
 % if (($page * $rows) < $TotalFound) {
-  <& $ShowLink, URI => $next->as_string, Title => "Next Page", Relation => 'next', &>
+  <& $ShowLink, URI => $next->as_string, Text => loc("Next Page"), Relation => 'next', &>
 % }
 </feed>
 <%INIT>
@@ -45,17 +45,18 @@ if (defined($rows) and $List->isa('RT::Tickets')) {
     $List->FromSQL( $query || "Type = 'ticket'" );
 }
 
+my $TotalFound = $List->Count;
+
 $List->RowsPerPage($rows) if $rows > 0;
 $List->GotoPage($page - 1) if $page > 0;
 
 $List = $List->ItemsArrayRef || [];
 
-my $TotalFound = @$List;
 $rows = $TotalFound if $rows <= 0;
 $page = 1 if $page <= 0;
 
 if ($TotalFound) {
-    $r->header_out('Content-Location' => "$BaseURI/$Path/".join(',', map $_->Id, @$List));
+    $r->headers_out->{'Content-Location'} = "$BaseURI/$Path/".join(',', map $_->Id, @$List);
 }
 
 return if $r->method eq 'HEAD';

@@ -1,8 +1,9 @@
 %# [PUT EditURI]
 %# Modifies a property with the serialization in the request body.
 <%INIT>
-my $content = $r->can('content') ? $r->content
-				 : do { local $/; <STDIN> };
+my $content;
+$content = $r->content if $r->can('content');
+$content = do { local $/; <STDIN> } unless defined $content;
 chomp($content);
 
 my ($status, $msg) = $m->comp(

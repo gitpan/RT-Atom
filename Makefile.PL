@@ -7,10 +7,7 @@ use inc::Module::Install;
 warn << '.';
 ### PLEASE NOTE ##############################################
 
-This is *PRE-ALPHA* code.  Using this module for anything
-(except for learning purporses) is strongly discouraged.
-
-Note that you need a RT3 instance before installing this module.
+You need a RT3 instance before installing this module.
 RT3 is available from http://www.bestpractical.com/rt/.
 
 ##############################################################

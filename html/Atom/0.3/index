@@ -9,6 +9,7 @@
   </author>
   <modified><% $Now->W3CDTF %></modified>
   <& $ShowLink, Type => 'text/html', URI => $RT::WebURL, Title => "Homepage" &>
+  <generator url="http://www.bestpractical.com/rt/" version="<% $RT::VERSION %>"></generator>
 % foreach my $class (@{$m->comp('Elements/Introspect', Want => 'TopLevelCollections')}) {
 %    my $type = $class;
 %    $type =~ s/^.*:://;
@@ -23,8 +24,10 @@
     <modified><% $Now->W3CDTF %></modified>
   </entry>
 % }
-  <info></info>
+  <info />
+% if (!$session{AtomClient}) {
   <html:a class="poweredby" href="<% $BaseURI %>/NoAuth/spec.html" title="The RT-Atom Specification"><&|/l&>Powered by RT-Atom</&></html:a>
+% }
 </feed>
 <%ARGS>
 $Path
